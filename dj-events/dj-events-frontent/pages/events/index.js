@@ -1,7 +1,8 @@
 import React from 'react';
+import Layout from '../../components/Layout';
 
 export default function index() {
-  return <div>
+  return <Layout>
       <h1>My Events</h1>
-  </div>;
+  </Layout>;
 }
