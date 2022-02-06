@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/Header.module.css';
+import Search from './Search';
 
 export default function Header() {
     return (
@@ -10,6 +11,8 @@ export default function Header() {
                     <a className=''>DJ EVENTS</a>
                 </Link>
             </div>
+
+            <Search />
 
             <nav>
                 <ul>
