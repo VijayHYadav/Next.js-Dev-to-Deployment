@@ -17,6 +17,8 @@ export default function register() {
 
     const { register, error } = useContext(AuthContext)
 
+    useEffect(() => error && toast.error(error))
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if (password !== passwordConfirm) {
@@ -73,7 +75,7 @@ export default function register() {
                     <input type='submit' value='Login' className='btn' />
                 </form>
                 <p>
-                    Already have an account? <Link href='/account/login'>Login</Link>
+                    Already have an account? <Link href='/account/login'>Register</Link>
                 </p>
             </div>
         </Layout>
