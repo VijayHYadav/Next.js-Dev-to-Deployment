@@ -3,8 +3,10 @@ import Layout from '@/components/Layout'
 import { API_URL } from '@/config/index'
 import { parseCookies } from '@/helpers/index'
 import styles from '@/styles/Dashboard.module.css'
+import { useRouter } from 'next/router'
 
 export default function DashboardPage({ events, token }) {
+  const router = useRouter()
 
   const deleteEvent = async (id) => {
     if (confirm('Are you sure?')) {
@@ -20,6 +22,7 @@ export default function DashboardPage({ events, token }) {
       if (!res.ok) {
         toast.error(data.message)
       } else {
+        // reload page and stay on the same page
         router.reload()
       }
     }
