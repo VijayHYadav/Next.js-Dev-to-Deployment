@@ -18,7 +18,7 @@ module.exports = {
                 files
             });
         } else {
-            ctx.request.body.user = ctx.state.user.id;
+            ctx.request.body.users_permissions_user = ctx.state.user.id;
             entity = await strapi.services.events.create(ctx.request.body);
         }
 

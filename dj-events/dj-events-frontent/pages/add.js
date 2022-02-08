@@ -1,3 +1,4 @@
+import { parseCookies } from '@/helpers/index'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useState } from 'react'
@@ -21,6 +22,7 @@ export default function AddEventPage({ token }) {
     const router = useRouter()
 
     const handleSubmit = async (e) => {
+        console.log('KEY', token)
         e.preventDefault()
 
         // Validation
@@ -36,11 +38,16 @@ export default function AddEventPage({ token }) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}` ,
             },
             body: JSON.stringify(values),
         })
 
         if (!res.ok) {
+            if (res.status === 403 || res.status === 401) {
+                toast.error('No token included')
+                return
+            }
             toast.error('Something Went Wrong')
         } else {
             const evt = await res.json()
@@ -135,4 +142,15 @@ export default function AddEventPage({ token }) {
             </form>
         </Layout>
     )
+}
+
+export async function getServerSideProps({ req }) {
+    console.log("req",req)
+    const { token } = parseCookies(req)
+    console.log("hvija",token)
+    return {
+        props: {
+            token,
+        },
+    }
 }
