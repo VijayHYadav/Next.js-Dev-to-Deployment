@@ -94,7 +94,9 @@ logs
 results
 node_modules
 .node_history
-
+.vscode
+yarn.lock
+package-lock.json
 ############################
 # Tests
 ############################
